@@ -49,6 +49,9 @@ def add_to_cart(request, item_id):
 
     request.session['cart'] = cart
     return redirect('menu')
+def cart_view(request):
+    return render(request, 'cart.html')
+
 
 def view_item(request, item_id):
     item = get_object_or_404(MenuItem, id=item_id)
