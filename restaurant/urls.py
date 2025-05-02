@@ -10,11 +10,7 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('order/<int:item_id>/', views.order_item, name='order_item'),
     path('place_order/', views.place_order, name='place_order'),
-    path('order_success/', views.order_success, name='order_success'),
-path('view_item/<int:item_id>/', views.view_item, name='view_item'),
-path('add_to_cart/<int:item_id>/', views.add_to_cart, name='add_to_cart'),
-
-path('cart/', views.cart_view, name='cart'),
-
-
+    path('order_success/', views.order_success, name='order_success'),  # Add this line
+    path('my_orders/', views.my_orders, name='my_orders'),
+    # Add other URLs here...
 ]
