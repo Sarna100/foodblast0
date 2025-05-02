@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 409254e5e77b00e7a7443e9748ea2daa8f28491d
 """
 URL configuration for foodblast0 project.
 

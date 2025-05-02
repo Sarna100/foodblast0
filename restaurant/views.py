@@ -48,6 +48,7 @@ def order_item(request, item_id):
 
 
 # Success page after order is placed
+<<<<<<< HEAD
 
 # In your views.py
 from django.shortcuts import render, redirect
@@ -114,5 +115,26 @@ def my_orders(request):
 
     return render(request, 'my_orders.html', {'orders': orders})
 
+=======
+def order_success(request):
+    return render(request, 'order_success.html')
+def place_order(request):
+    if request.method == 'POST':
+        menu_item_id = request.POST.get('menu_item_id')
+        menu_item = MenuItem.objects.get(id=menu_item_id)
+
+        order = Order(
+            menu_item=menu_item,
+            quantity=request.POST['quantity'],
+            user_name=request.POST['user_name'],
+            user_email=request.POST['user_email'],
+            user_phone=request.POST['user_phone']
+        )
+        order.save()
+
+        return redirect('order_success')  # Redirect to order confirmation page after placing order
+
+    return redirect('menu')  # If GET request, redirect to menu
+>>>>>>> 409254e5e77b00e7a7443e9748ea2daa8f28491d
 
 

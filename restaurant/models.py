@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 409254e5e77b00e7a7443e9748ea2daa8f28491d
 from django.db import models
 from django.utils import timezone
 
@@ -22,3 +25,8 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order by {self.user_name} - {self.menu_item.name}"
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 409254e5e77b00e7a7443e9748ea2daa8f28491d
