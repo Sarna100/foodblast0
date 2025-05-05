@@ -1,0 +1,93 @@
+.about-section {
+  background-color: #f9f9f9;
+}
+
+.about-section h6 {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.about-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.about-section .play-button a {
+  background-color: #dc3545;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.about-section .play-button a:hover {
+  background-color: #c82333;
+}
+
+.about-section .play-button i {
+  font-size: 20px;
+}
+
+.about-section img {
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .about-section h2 {
+    font-size: 2rem;
+  }
+  .about-section .play-button {
+    top: 45% !important;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* ===== Navbar section ===== */
+.navbar {
+  background-color: #222;
+  color: white;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+
+
+.navbar .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffbe33;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+  color: #ffbe33;
+}
+
+
