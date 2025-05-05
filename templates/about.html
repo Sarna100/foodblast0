@@ -1,172 +1,34 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>About Us | FoodBlast</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-  <!-- Custom CSS -->
-  <style>
-    /* ===== Global Reset ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    /* ===== Navbar section ===== */
-    .navbar {
-      background-color: #222;
-      color: white;
-      height: 70px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 15px;
-      margin-bottom: 30px; /* navbar er niche space */
-    }
-
-    .navbar .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #ffbe33;
-    }
-
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      margin-bottom: 0;
-    }
-
-    .navbar ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .navbar ul li a:hover {
-      color: #ffbe33;
-    }
-
-    /* ===== About Section ===== */
-    .about-section {
-      background-color: #f9f9f9;
-    }
-
-    .about-section h6 {
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .about-section h2 {
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-
-    .about-section p {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .about-section .play-button a {
-      background-color: #dc3545;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-    }
-
-    .about-section .play-button a:hover {
-      background-color: #c82333;
-    }
-
-    .about-section .play-button i {
-      font-size: 20px;
-    }
-
-    .about-section img {
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    @media (max-width: 768px) {
-      .about-section h2 {
-        font-size: 2rem;
-      }
-
-      .about-section .play-button {
-        top: 45% !important;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - FoodBlast0</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
 
-  <!-- ===== Navbar ===== -->
-  <nav class="navbar">
-    <div class="logo">FoodBlast</div>
-    <ul class="navbar-nav d-flex flex-row">
-      <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="{% url 'menu' %}">Menu</a></li>
-      <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
-      <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-    </ul>
-  </nav>
-
-  <!-- ===== About Section ===== -->
-  <section id="about" class="about-section py-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <!-- Left text content -->
-        <div class="col-lg-6 mb-4 mb-lg-0">
-          <h6 class="text-danger text-uppercase mb-3">About Us</h6>
-          <h2 class="fw-bold mb-3">We Leave A Delicious Memory For You</h2>
-          <p>
-            Welcome to FoodBlast — your go-to destination for unforgettable dining experiences.
-            We serve fresh, flavorful dishes made with passion and premium ingredients.
-          </p>
-          <p class="text-muted mt-3">
-            Discover our mouth-watering menu and cozy ambience, perfect for any occasion.
-          </p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">FoodBlast0</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{% url 'about' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'menu' %}">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+            </ul>
         </div>
-
-        <!-- Right image and play button -->
-        <div class="col-lg-6">
-          <div class="position-relative">
-            <img src="{% static 'images/your-image.jpg' %}" class="img-fluid rounded shadow" alt="Cafe image">
-            <div class="play-button position-absolute top-50 start-50 translate-middle">
-              <a href="#" class="btn btn-danger rounded-circle d-flex justify-content-center align-items-center" style="width:60px; height:60px;">
-                <i class="fas fa-play text-white"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dish gallery -->
-      <div class="row text-center mt-5">
-        <div class="col-md-3 mb-3">
-          <img src="{% static 'images/restaurant-interior.jpg' %}" class="img-fluid rounded" alt="Dish 1">
-        </div>
-        <div class="col-md-3 mb-3">
-          <img src="{% static 'images/restaurant-hall-with-red-brick-walls-wooden-tables-pipes-ceiling.jpg' %}" class="img-fluid rounded" alt="Dish 2">
-        </div>
-        <div class="col-md-4 mb-3">
-          <img src="{% static 'wr3.jpg' %}" class="img-fluid rounded" alt="Dish 3">
-        </div>
-      </div>
     </div>
-  </section>
+</nav>
+
+<div class="container mt-5">
+    <h2>About FoodBlast0</h2>
+    <p>FoodBlast0 is your go-to place for delicious, affordable, and fast meals. Our chefs are passionate about quality and taste. Whether you're dining in or ordering online, we ensure the best experience every time!</p>
+</div>
 
 </body>
 </html>
