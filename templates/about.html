@@ -1,34 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - FoodBlast0</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - FoodBlast0</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.7rem;
+      color: #ff5722 !important;
+    }
+
+    .nav-link {
+      margin-right: 15px;
+      font-weight: 500;
+      color: #333 !important;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #ff5722 !important;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 50px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      color: #333;
+
+      /* Animation */
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideUp 1s ease-out forwards;
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #ff5722;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #ff5722;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">FoodBlast0</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link active" href="{% url 'about' %}">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'menu' %}">Menu</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
-                
-                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-            </ul>
-        </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">FoodBlast0</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="{% url 'about' %}">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'menu' %}">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+      </ul>
     </div>
+  </div>
 </nav>
 
-<div class="container mt-5">
+<!-- Overlay and About Section -->
+<div class="overlay">
+  <div class="container">
     <h2>About FoodBlast0</h2>
-    <p>FoodBlast0 is your go-to place for delicious, affordable, and fast meals. Our chefs are passionate about quality and taste. Whether you're dining in or ordering online, we ensure the best experience every time!</p>
+    <p>
+      Welcome to <strong>FoodBlast0</strong> – your go-to destination for mouth-watering, affordable, and lightning-fast meals.
+      Whether you're craving a spicy biryani, cheesy pizza, or a healthy salad, we've got something for everyone!
+      <br><br>
+      Our passionate chefs are committed to quality, freshness, and unforgettable flavor. Dine in, take out, or order online –
+      we promise satisfaction every time. Join the FoodBlast0 family and experience food, the way it should be!
+    </p>
+  </div>
 </div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
