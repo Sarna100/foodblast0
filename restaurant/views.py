@@ -18,19 +18,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect('home')  # login successful → go to home page
-        else:
-            messages.error(request, 'Invalid username or password.')
-
-    return render(request, 'login.html')
 
 
 def order_item(request, item_id):
@@ -55,22 +43,30 @@ def order_item(request, item_id):
 def order_success(request):
     return render(request, 'order_success.html')
 
+from django.shortcuts import render
+from .models import MenuItem
+
+from django.shortcuts import render
+from .models import MenuItem
+
 def menu_view(request):
-    rice_items = MenuItem.objects.filter(category='rice')
-    chicken_items = MenuItem.objects.filter(category='chicken')
-    beef_items = MenuItem.objects.filter(category='beef')
-    mutton_items = MenuItem.objects.filter(category='mutton')
-    fastfood_items = MenuItem.objects.filter(category='fastfood')
-    drinks_items = MenuItem.objects.filter(category='drinks')
+    starters_items = MenuItem.objects.filter(category='🥗 Starters')
+    main_course_items = MenuItem.objects.filter(category='🍛 Main Course')
+    noodles_pasta_items = MenuItem.objects.filter(category='🍝 Noodles & Pasta')
+    sides_items = MenuItem.objects.filter(category='🍟 Sides')
+    drinks_items = MenuItem.objects.filter(category='🍹 Drinks')
+    desserts_items = MenuItem.objects.filter(category='🍨 Desserts')
 
     return render(request, 'menu.html', {
-        'rice_items': rice_items,
-        'chicken_items': chicken_items,
-        'beef_items': beef_items,
-        'mutton_items': mutton_items,
-        'fastfood_items': fastfood_items,
-        'drinks_items': drinks_items
+        'starters_items': starters_items,
+        'main_course_items': main_course_items,
+        'noodles_pasta_items': noodles_pasta_items,
+        'sides_items': sides_items,
+        'drinks_items': drinks_items,
+        'desserts_items': desserts_items
     })
+
+
 
 
 from django.contrib import messages
@@ -100,12 +96,27 @@ def place_order(request):
     return redirect('menu')
 
 
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')  # Redirect to home page
+        else:
+            return render(request, 'login.html', {'error': 'Invalid credentials'})
+    return render(request, 'login.html')
+
+# Registration view
 def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')  # redirect to login page after registration
+            user = form.save()
+            login(request, user)
+            return redirect('home')  # Redirect to home page after registration
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
+
