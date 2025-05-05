@@ -2,12 +2,12 @@ from django.db import models
 
 class MenuItem(models.Model):
     CATEGORY_CHOICES = [
-        ('rice', 'Rice'),
-        ('chicken', 'Chicken'),
-        ('beef', 'Beef'),
-        ('mutton', 'Mutton'),
-        ('fastfood', 'Fast Food'),
-        ('drinks', 'Drinks'),
+        ('🥗 Starters', '🥗 Starters'),
+        ('🍛 Main Course', '🍛 Main Course'),
+        ('🍝 Noodles & Pasta', '🍝 Noodles & Pasta'),
+        ('🍟 Sides', '🍟 Sides'),
+        ('🍹 Drinks', '🍹 Drinks'),
+        ('🍨 Desserts', '🍨 Desserts'),
     ]
 
     name = models.CharField(max_length=100)
