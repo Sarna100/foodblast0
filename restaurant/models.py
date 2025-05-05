@@ -14,7 +14,7 @@ class MenuItem(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(upload_to='menu_images/')
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='fastfood')
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='Drinks')
 
     def __str__(self):
         return self.name

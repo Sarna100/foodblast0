@@ -15,10 +15,10 @@
         <!-- Home Link -->
         <a href="{% url 'home' %}" class="btn btn-primary mb-3">Back to Home</a>
 
-        <!-- Rice Items -->
-        <h3>Rice</h3>
+        <!-- Starters -->
+        <h3>Starters</h3>
         <div class="row">
-            {% for item in rice_items %}
+            {% for item in starters_items %}
                 <div class="col-md-4 mb-4">
                     <div class="card" style="width: 100%;">
                         <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
@@ -26,18 +26,19 @@
                             <h5 class="card-title">{{ item.name }}</h5>
                             <p class="card-text">{{ item.description }}</p>
                             <p class="card-text"><strong>${{ item.price }}</strong></p>
-                            <p class="card-text">Category: <em>{{ item.get_category_display }}</em></p>
                             <a href="{% url 'order_item' item.id %}" class="btn btn-success">Order Now</a>
                         </div>
                     </div>
                 </div>
+            {% empty %}
+                <p>No starters available.</p>
             {% endfor %}
         </div>
 
-        <!-- Chicken Items -->
-        <h3>Chicken</h3>
+        <!-- Main Course -->
+        <h3>Main Course</h3>
         <div class="row">
-            {% for item in chicken_items %}
+            {% for item in main_course_items %}
                 <div class="col-md-4 mb-4">
                     <div class="card" style="width: 100%;">
                         <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
@@ -45,18 +46,19 @@
                             <h5 class="card-title">{{ item.name }}</h5>
                             <p class="card-text">{{ item.description }}</p>
                             <p class="card-text"><strong>${{ item.price }}</strong></p>
-                            <p class="card-text">Category: <em>{{ item.get_category_display }}</em></p>
                             <a href="{% url 'order_item' item.id %}" class="btn btn-success">Order Now</a>
                         </div>
                     </div>
                 </div>
+            {% empty %}
+                <p>No main course items available.</p>
             {% endfor %}
         </div>
 
-        <!-- Beef Items -->
-        <h3>Beef</h3>
+        <!-- Noodles & Pasta -->
+        <h3>Noodles & Pasta</h3>
         <div class="row">
-            {% for item in beef_items %}
+            {% for item in noodles_pasta_items %}
                 <div class="col-md-4 mb-4">
                     <div class="card" style="width: 100%;">
                         <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
@@ -64,18 +66,19 @@
                             <h5 class="card-title">{{ item.name }}</h5>
                             <p class="card-text">{{ item.description }}</p>
                             <p class="card-text"><strong>${{ item.price }}</strong></p>
-                            <p class="card-text">Category: <em>{{ item.get_category_display }}</em></p>
                             <a href="{% url 'order_item' item.id %}" class="btn btn-success">Order Now</a>
                         </div>
                     </div>
                 </div>
+            {% empty %}
+                <p>No noodles & pasta items available.</p>
             {% endfor %}
         </div>
 
-        <!-- Mutton Items -->
-        <h3>Mutton</h3>
+        <!-- Sides -->
+        <h3>Sides</h3>
         <div class="row">
-            {% for item in mutton_items %}
+            {% for item in sides_items %}
                 <div class="col-md-4 mb-4">
                     <div class="card" style="width: 100%;">
                         <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
@@ -83,34 +86,16 @@
                             <h5 class="card-title">{{ item.name }}</h5>
                             <p class="card-text">{{ item.description }}</p>
                             <p class="card-text"><strong>${{ item.price }}</strong></p>
-                            <p class="card-text">Category: <em>{{ item.get_category_display }}</em></p>
                             <a href="{% url 'order_item' item.id %}" class="btn btn-success">Order Now</a>
                         </div>
                     </div>
                 </div>
+            {% empty %}
+                <p>No sides available.</p>
             {% endfor %}
         </div>
 
-        <!-- Fast Food Items -->
-        <h3>Fast Food</h3>
-        <div class="row">
-            {% for item in fastfood_items %}
-                <div class="col-md-4 mb-4">
-                    <div class="card" style="width: 100%;">
-                        <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ item.name }}</h5>
-                            <p class="card-text">{{ item.description }}</p>
-                            <p class="card-text"><strong>${{ item.price }}</strong></p>
-                            <p class="card-text">Category: <em>{{ item.get_category_display }}</em></p>
-                            <a href="{% url 'order_item' item.id %}" class="btn btn-success">Order Now</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-
-        <!-- Drinks Items -->
+        <!-- Drinks -->
         <h3>Drinks</h3>
         <div class="row">
             {% for item in drinks_items %}
@@ -121,11 +106,32 @@
                             <h5 class="card-title">{{ item.name }}</h5>
                             <p class="card-text">{{ item.description }}</p>
                             <p class="card-text"><strong>${{ item.price }}</strong></p>
-                            <p class="card-text">Category: <em>{{ item.get_category_display }}</em></p>
                             <a href="{% url 'order_item' item.id %}" class="btn btn-success">Order Now</a>
                         </div>
                     </div>
                 </div>
+            {% empty %}
+                <p>No drinks available.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Desserts -->
+        <h3>Desserts</h3>
+        <div class="row">
+            {% for item in desserts_items %}
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 100%;">
+                        <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-text">{{ item.description }}</p>
+                            <p class="card-text"><strong>${{ item.price }}</strong></p>
+                            <a href="{% url 'order_item' item.id %}" class="btn btn-success">Order Now</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No desserts available.</p>
             {% endfor %}
         </div>
     </div>
