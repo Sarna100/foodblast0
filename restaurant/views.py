@@ -40,13 +40,8 @@ def order_item(request, item_id):
 
 
 
-def order_success(request):
-    return render(request, 'order_success.html')
 
-from django.shortcuts import render
-from .models import MenuItem
 
-from django.shortcuts import render
 from .models import MenuItem
 
 def menu_view(request):
@@ -78,23 +73,39 @@ from .models import MenuItem, Order
 from django.contrib import messages
 
 
-def place_order(request):
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from .models import MenuItem  # বা যেটা তোমার মডেল
+from .models import Order  # যদি অর্ডার সংরক্ষণ করো
+
+def place_order(request, item_id):
+    item = get_object_or_404(MenuItem, id=item_id)
+
     if request.method == 'POST':
-        menu_item_id = request.POST.get('menu_item_id')
-        menu_item = MenuItem.objects.get(id=menu_item_id)
+        quantity = request.POST['quantity']
+        user_name = request.POST['user_name']
+        user_email = request.POST['user_email']
+        user_phone = request.POST['user_phone']
 
-        order = Order(
-            menu_item=menu_item,
-            quantity=request.POST['quantity'],
-            user_name=request.POST['user_name'],
-            user_email=request.POST['user_email'],
-            user_phone=request.POST['user_phone']
+        Order.objects.create(
+            menu_item=item,
+            quantity=quantity,
+            user_name=user_name,
+            user_email=user_email,
+            user_phone=user_phone
         )
-        order.save()
 
-        return redirect('order_success')
+        # Redirect to order_success page without showing any messages
+        return redirect('order_success')  # Ensure it redirects to order_success page
 
-    return redirect('menu')
+    return render(request, 'order.html', {'item': item})
+
+
+
+
+def order_success(request):
+    return render(request, 'order_success.html')
+
 
 
 def login_view(request):
@@ -120,4 +131,8 @@ def register_view(request):
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
+
+
+
+
 
