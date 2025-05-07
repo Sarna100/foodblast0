@@ -135,4 +135,24 @@ def register_view(request):
 
 
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
+def home(request):
+    return render(request, 'home.html')
+
+def order_page(request):
+    if request.method == 'POST':
+        item_name = request.POST.get('item_name')
+        quantity = request.POST.get('quantity')
+        user_name = request.POST.get('user_name')
+        user_email = request.POST.get('user_email')
+        user_phone = request.POST.get('user_phone')
+
+        # Normally database save korben ekhane (jodi model thake)
+
+        messages.success(request, 'Your order has been placed successfully!')
+        return redirect('order_page')
+
+    return render(request, 'order.html')
 

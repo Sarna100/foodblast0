@@ -10,11 +10,16 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
 
     path('order/success/', views.order_success, name='order_success'),
+
+    path('', views.home, name='home'),
+    path('order/', views.order_page, name='order_page'),
     path('place_order/<int:item_id>/', views.place_order, name='place_order'),
     path('menu/', views.menu_view, name='menu'),
     path('menu/order/<int:item_id>/', views.order_item, name='order_item'),
     path('register/', views.register_view, name='register'),
-path('order/<int:item_id>/', views.order_item, name='order'),  # name="order" must be there
+ # name="order" must be there
+
+path('order/<int:item_id>/', views.order_item, name='order_item'),
 
 
 ]

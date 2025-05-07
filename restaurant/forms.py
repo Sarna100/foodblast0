@@ -10,3 +10,5 @@ class MenuOrderForm(forms.Form):
     user_name = forms.CharField(max_length=100, label="Your Name")
     user_email = forms.EmailField(label="Your Email")
     user_phone = forms.CharField(max_length=15, label="Phone Number")
+
+
