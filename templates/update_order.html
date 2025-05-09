@@ -3,23 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <title>Update Order</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Custom Animated CSS -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #e3f2fd, #ffffff);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            animation: fadeInBody 1s ease-in-out;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeInBody {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            animation: slideInDown 0.8s ease-in-out;
+            color: #0d6efd;
+            font-weight: 600;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        form {
+            animation: fadeInForm 1.2s ease;
+            transition: box-shadow 0.3s ease-in-out;
+            background-color: #f8f9fa;
+        }
+
+        @keyframes fadeInForm {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        form:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        button, a.btn {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        button:hover, a.btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-success {
+            background-color: #198754;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #157347;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container mt-5">
     <h2 class="mb-4 text-center">Update Order</h2>
 
-    <form method="post" class="border p-4 rounded bg-light shadow-sm">
+    <form method="post" class="border p-4 rounded shadow-sm">
         {% csrf_token %}
         {{ form.as_p }}
 
-        <div class="d-grid gap-2">
+        <div class="d-grid gap-2 mt-3">
             <button type="submit" class="btn btn-success">Update Order</button>
             <a href="{% url 'order_list' %}" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 </div>
+
+<!-- Bootstrap JS (optional if using dropdowns or tooltips) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
