@@ -23,8 +23,8 @@ class MenuItem(models.Model):
 from django.db import models
 
 class Order(models.Model):
-    menu_items = models.ManyToManyField(MenuItem)  # Many-to-Many সম্পর্ক # এটি মেনু আইটেম সংযুক্ত করবে
-    quantity = models.PositiveIntegerField(default=1)  # এটি আইটেমের পরিমাণ সংরক্ষণ করবে
+    menu_items = models.ManyToManyField(MenuItem)
+    quantity = models.PositiveIntegerField(default=1)
     user_name = models.CharField(max_length=100)
     user_email = models.EmailField()
     user_phone = models.CharField(max_length=15)

@@ -4,7 +4,7 @@ from .models import MenuItem
 from django import forms
 from .models import MenuItem, Order
 
-class MenuOrderForm(forms.ModelForm):  # ModelForm এ পরিবর্তন করুন
+class MenuOrderForm(forms.ModelForm):
     menu_items = forms.ModelMultipleChoiceField(
         queryset=MenuItem.objects.all(),
         widget=forms.CheckboxSelectMultiple,
@@ -15,8 +15,10 @@ class MenuOrderForm(forms.ModelForm):  # ModelForm এ পরিবর্তন 
     user_phone = forms.CharField(max_length=15, label="Phone Number")
 
     class Meta:
-        model = Order  # যেহেতু এটি Order মডেলকে আপডেট করবে
+        model = Order
         fields = ['menu_items', 'user_name', 'user_email', 'user_phone']
+
+
 
 
 from django import forms
@@ -26,7 +28,4 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['menu_items', 'quantity', 'user_name', 'user_email', 'user_phone']
-        widgets = {
-            'menu_items': forms.CheckboxSelectMultiple,
-        }
 

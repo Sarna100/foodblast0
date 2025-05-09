@@ -17,7 +17,7 @@ def about(request):
 def contact(request):
     return render(request, 'contact.html')
 
-# Order Item Page (Handles MenuItem Orders)
+
 def order_item(request, item_id):
     item = get_object_or_404(MenuItem, pk=item_id)
 
@@ -34,8 +34,8 @@ def order_item(request, item_id):
 
     return render(request, 'order.html', {'item': item, 'form': form})
 
-# Menu View (Displays Items Categorized)
-def menu_view(request):
+
+def menu_view(request, popular_items=None):
     starters_items = MenuItem.objects.filter(category='🥗 Starters')
     main_course_items = MenuItem.objects.filter(category='🍛 Main Course')
     noodles_pasta_items = MenuItem.objects.filter(category='🍝 Noodles & Pasta')
@@ -43,7 +43,7 @@ def menu_view(request):
     drinks_items = MenuItem.objects.filter(category='🍹 Drinks')
     desserts_items = MenuItem.objects.filter(category='🍨 Desserts')
     healthy_foods_items = MenuItem.objects.filter(category='Healthy Foods')
-    our_popular_dishes=MenuItem.objects.filter(category='Our Popular Dishes')
+    popular_items = MenuItem.objects.filter(category='Our Popular Dishes')
 
     return render(request, 'menu.html', {
         'starters_items': starters_items,
@@ -53,11 +53,11 @@ def menu_view(request):
         'drinks_items': drinks_items,
         'desserts_items': desserts_items,
         'healthy_foods_items': healthy_foods_items,
-        'our_popular_dishes': our_popular_dishes,
+        'popular_items': popular_items,
     })
 
-# Place Order View (Handles Orders Submission)
-# views.py
+
+
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import MenuItem, Order
 from .forms import MenuOrderForm
@@ -66,22 +66,29 @@ def place_order(request, item_id):
     item = get_object_or_404(MenuItem, id=item_id)
 
     if request.method == 'POST':
-        quantity = request.POST['quantity']
+        quantity = int(request.POST['quantity'])
         user_name = request.POST['user_name']
         user_email = request.POST['user_email']
         user_phone = request.POST['user_phone']
 
+        # Step 1: Create the order without total_price
         order = Order.objects.create(
             user_name=user_name,
             user_email=user_email,
-            user_phone=user_phone
+            user_phone=user_phone,
+            quantity=quantity,
+            total_price=0  # Temporary value
         )
-        # Create the many-to-many relationship
-        order.menu_items.add(item)  # Add the selected item to the order
-        order.quantity = quantity
+
+        order.menu_items.add(item)
+
+
+        total = sum(menu_item.price for menu_item in order.menu_items.all()) * quantity
+
+
+        order.total_price = total
         order.save()
 
-        # Redirect to order_success page after order is placed
         return redirect('order_success')
 
     return render(request, 'order.html', {'item': item})
@@ -110,12 +117,11 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')  # Redirect to home page after registration
+            return redirect('home')
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
 
-# Order Page View (Handles Order Form Submission with Messages)
 def order_page(request):
     if request.method == 'POST':
         item_name = request.POST.get('item_name')
@@ -134,12 +140,12 @@ def order_page(request):
         )
 
         messages.success(request, 'Your order has been placed successfully!')
-        return redirect('order_page')  # Redirect to the same order page after placing order
+        return redirect('order_page')
 
     return render(request, 'order.html')
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Order
-from .forms import MenuOrderForm  # You already have this
+from .forms import MenuOrderForm
 
 # View to update an order
 def update_order(request, order_id):
@@ -148,7 +154,7 @@ def update_order(request, order_id):
         form = MenuOrderForm(request.POST, instance=order)
         if form.is_valid():
             updated_order = form.save(commit=False)
-            updated_order.save()  # এখানে সেভ করছো
+            updated_order.save()
             return redirect('order_confirmation', order_id=order.id)
     else:
         form = MenuOrderForm(instance=order)
@@ -156,13 +162,12 @@ def update_order(request, order_id):
     return render(request, 'update_order.html', {'form': form})
 
 
-# View to delete an order
 def delete_order(request, order_id):
     order = get_object_or_404(Order, id=order_id)
 
     if request.method == 'POST':
         order.delete()
-        return redirect('order_list')  # Or a success page
+        return redirect('order_list')
 
     return render(request, 'delete_order.html', {'order': order})
 
@@ -179,13 +184,13 @@ from django.shortcuts import render, get_object_or_404
 from .models import Order
 
 def order_confirmation(request, order_id):
-    # অর্ডারটি খুঁজে বের করুন
+
     order = get_object_or_404(Order, id=order_id)
 
-    # অর্ডারে থাকা মেনু আইটেমগুলির নাম সংগ্রহ করুন
+
     item_names = [item.name for item in order.menu_items.all()]
 
-    # টেমপ্লেটে পাঠাতে হবে
+
     return render(request, 'order_confirmation.html', {'order': order, 'item_names': item_names})
 
 

@@ -95,7 +95,11 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <strong>{{ order.user_name }}</strong> ordered
+                       {% for item in order.menu_items.all %}
+                       <strong>{{ item.name }}</strong><br>
+                        {% endfor %}
                         <em>{{ order.menu_item.name }}</em> (Qty: {{ order.quantity }})
+                     <strong>Total Price:</strong> ${{ order.total_price }}
                     </div>
                     <div>
                         <a href="{% url 'update_order' order.id %}" class="btn btn-sm btn-warning">Edit</a>

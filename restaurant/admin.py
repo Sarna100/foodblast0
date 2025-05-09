@@ -8,4 +8,3 @@ class MenuItemAdmin(admin.ModelAdmin):
 
 
 admin.site.register(MenuItem, MenuItemAdmin)
-admin.site.register(Order)
