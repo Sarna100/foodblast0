@@ -273,6 +273,25 @@
             <p>No healthy foods available.</p>
             {% endfor %}
         </div>
+<!-- Our Popular Dishes Section -->
+<h3>Our Popular Dishes</h3>
+<div class="row">
+    {% for item in popular_items %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}" onerror="this.src='{% static 'img/default-food.jpg' %}'">
+            <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">{{ item.description }}</p>
+                <p class="card-text"><strong>${{ item.price }}</strong></p>
+                <a href="{% url 'order_item' item.id %}" class="btn btn-primary">Order Now</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No popular dishes available.</p>
+    {% endfor %}
+</div>
     </div>
 </body>
 </html>

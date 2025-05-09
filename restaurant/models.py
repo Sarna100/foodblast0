@@ -9,6 +9,7 @@ class MenuItem(models.Model):
         ('🍹 Drinks', '🍹 Drinks'),
         ('🍨 Desserts', '🍨 Desserts'),
         ('Healthy Foods', 'Healthy Foods'),
+        ('Our Popular Dishes','Our Popular Dishes')
     ]
 
     name = models.CharField(max_length=100)
@@ -19,14 +20,23 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.name
-
+from django.db import models
 
 class Order(models.Model):
-    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    menu_items = models.ManyToManyField(MenuItem)  # Many-to-Many সম্পর্ক # এটি মেনু আইটেম সংযুক্ত করবে
+    quantity = models.PositiveIntegerField(default=1)  # এটি আইটেমের পরিমাণ সংরক্ষণ করবে
     user_name = models.CharField(max_length=100)
     user_email = models.EmailField()
     user_phone = models.CharField(max_length=15)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self):
-        return f"Order by {self.user_name} - {self.menu_item.name}"
+        return f"Order by {self.user_name} ({self.id})"
+
+    def calculate_total(self):
+        self.total_price = self.menu_item.price * self.quantity
+        self.save()
+
+
+
+

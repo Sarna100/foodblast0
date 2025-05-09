@@ -16,6 +16,10 @@ urlpatterns = [
     path('menu/order/<int:item_id>/', views.order_item, name='order_item'),
     path('register/', views.register_view, name='register'),
 path('order/<int:item_id>/', views.order_item, name='order'),  # name="order" must be there
-
-
+path('orders/', views.order_list, name='order_list'),
+    path('orders/update/<int:order_id>/', views.update_order, name='update_order'),
+    path('orders/delete/<int:order_id>/', views.delete_order, name='delete_order'),
+    path('order/confirmation/<int:order_id>/', views.order_confirmation, name='order_confirmation'),
 ]
+
+
